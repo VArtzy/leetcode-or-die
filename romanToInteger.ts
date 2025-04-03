@@ -13,7 +13,7 @@ function romanToInt(s: string): number {
     for (let i = 0; i < s.length; i++) {
         const p1 = roman.get(s[i])
         const p2 = roman.get(s[i + 1])
-        if (i <= s.length && p1 > p2) {
+        if (i + 1 < s.length && p1 > p2) {
             counter -= p1
         } else {
             counter += p1
