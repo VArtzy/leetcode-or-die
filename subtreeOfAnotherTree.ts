@@ -12,17 +12,12 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-    // If subtree is null, it's always a subtree (empty tree is subtree of any tree)
-    if (subRoot === null) return true;
+    if (subRoot === null) return true
+    if (root === null) return false
+
+    if (isSameTree(root, subRoot))return true
     
-    // If main tree is null but subtree isn't, it's not a subtree
-    if (root === null) return false;
-    
-    // Check if trees are identical starting from current node
-    if (isSameTree(root, subRoot)) return true;
-    
-    // Otherwise check left or right subtrees
-    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
 };
 
 /**
@@ -32,15 +27,9 @@ var isSubtree = function(root, subRoot) {
  * @returns {boolean}
  */
 function isSameTree(p, q) {
-    // Both null - identical
-    if (p === null && q === null) return true;
-    
-    // One null, one not - not identical
-    if (p === null || q === null) return false;
-    
-    // Values don't match - not identical
-    if (p.val !== q.val) return false;
-    
-    // Recursively check left and right subtrees
-    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    if (p === null && q === null) return true
+    if (p === null || q === null) return false
+    if (p.val !== q.val) return false
+
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
 }
